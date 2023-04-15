@@ -5,35 +5,33 @@ public class Tree {
         root = null;
     }
     public void insert(int id, double dd){
+        Node newNode = new Node();
+        newNode.iData = id;
+        newNode.dData = dd;
 
-            Node newNode = new Node();
-            newNode.iData = id;
-            newNode.dData = dd;
+        if (root == null) {
+            newNode = root;
+        }
+        else{
+            Node current = root;
+            Node parent;
 
-            if (root == null ){
-                newNode = root;
-            }
-            else {
-                Node current = root;
-                Node parent = current;
+            while (current != null ){
 
-                while(current != null){
-                    parent = current ;
+                parent = current;
 
-                    if(id < current.iData){
-                        current = current.leftChild;
+                if (current.iData > id){
+                    current.leftChild = newNode;
 
-                        if (current.leftChild == null){
-                            parent.leftChild = newNode;
-                            return;
-                        }
+                    if(current == null ){
+                        parent.leftChild = newNode;
                     }
-                    else{
-                        current = current.rightChild;
-                        if (current.rightChild == null){
-                            parent.rightChild = newNode;
-                            return;
-                        }
+                }
+                else if (current.iData < id){
+                    current.rightChild = newNode;
+
+                    if(current == null ){
+                        parent.rightChild = newNode;
                     }
                 }
             }
@@ -41,7 +39,7 @@ public class Tree {
     public boolean delete(int id){
         return;
     }
-    public Node find (int key){
+    public Node find(int key){
 
     Node current = root;
 
@@ -58,4 +56,23 @@ public class Tree {
 
         return current;
     }
-}
+        private void inOrder(Node localRoot)
+        {
+            if (localRoot != null)
+            {
+                inOrder(localRoot.leftChild);
+                localRoot.displayNode();
+                inOrder(localRoot.rightChild);
+            }
+        }
+        private void preOrder(node localRoot){
+            if (localRoot != null ){
+                //root left right
+                localRoot.displayNode();
+                preOrder(localRoot.leftChild);
+                preOrder(localRoot.rightChild);
+            }
+        }
+
+    }
+
