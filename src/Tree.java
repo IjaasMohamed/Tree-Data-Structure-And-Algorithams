@@ -6,9 +6,40 @@ public class Tree {
     }
     public void insert(int id, double dd){
 
+            Node newNode = new Node();
+            newNode.iData = id;
+            newNode.dData = dd;
+
+            if (root == null ){
+                newNode = root;
+            }
+            else {
+                Node current = root;
+                Node parent = current;
+
+                while(current != null){
+                    parent = current ;
+
+                    if(id < current.iData){
+                        current = current.leftChild;
+
+                        if (current.leftChild == null){
+                            parent.leftChild = newNode;
+                            return;
+                        }
+                    }
+                    else{
+                        current = current.rightChild;
+                        if (current.rightChild == null){
+                            parent.rightChild = newNode;
+                            return;
+                        }
+                    }
+                }
+            }
     }
     public boolean delete(int id){
-        return
+        return;
     }
     public Node find (int key){
 
@@ -18,7 +49,7 @@ public class Tree {
         if(current.iData < key){
             current = current.leftChild;
         } else {
-            current = current.leftChild''
+            current = current.leftChild;
         }
         if (current == null){
             return null;
